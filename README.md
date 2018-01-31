@@ -2,6 +2,11 @@
 
 A express webserver module.
 
+* static webserver
+* CROS origin requests
+* json body parser
+* tries to use 'rf-log'
+
 
 ##
 

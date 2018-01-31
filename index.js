@@ -4,37 +4,39 @@ var bodyParser = require('body-parser');
 // logging
 var log = {
    info: console.log,
-   error: console.error
+   error: console.error,
+   critical: function () {
+      throw new Error(console.error.apply(arguments));
+   }
 };
 try { // try using rf-log
    log = require(require.resolve('rf-log')).customPrefixLogger('[rf-http]');
 } catch (e) {}
 
 
+var limitSize = '50mb'; // body parser
+
+
 module.exports.start = function (options) {
    options.pathsWebserver = options.pathsWebserver;
-
-   if (!options.pathsWebserver) {
-      log.error('options.pathsWebserver is not defined!');
-      return;
-   }
-
    options.port = options.port || 3021;
+
+   if (!options.pathsWebserver) log.critical('options.pathsWebserver is not defined!');
 
 
    // -------------- webserver ------------------//
    var app = express();
 
-   app.use(bodyParser.raw({ // support raw buffer bodies till 50Mb
-      limit: '50mb'
+   app.use(bodyParser.raw({ // support raw buffer bodies
+      limit: limitSize
    }));
-   app.use(bodyParser.json({ // support JSON-encoded bodies till 50Mb
+   app.use(bodyParser.json({ // support JSON-encoded bodies
       extended: false,
-      limit: '50mb'
+      limit: limitSize
    }));
-   app.use(bodyParser.urlencoded({ // support URL-encoded bodies till 50Mb
+   app.use(bodyParser.urlencoded({ // support URL-encoded bodies
       extended: false,
-      limit: '50mb'
+      limit: limitSize
    }));
 
    // enable cross origin sharing (http://enable-cors.org/server_expressjs.html)
