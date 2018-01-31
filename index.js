@@ -12,7 +12,13 @@ try { // try using rf-log
 
 
 module.exports.start = function (options) {
-   options.port = options.pathsWebserver || __dirname;
+   options.pathsWebserver = options.pathsWebserver;
+
+   if (!options.pathsWebserver) {
+      log.error('options.pathsWebserver is not defined!');
+      return;
+   }
+
    options.port = options.port || 3021;
 
 
