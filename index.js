@@ -50,8 +50,11 @@ module.exports.start = function (options) {
    });
 
    app.use(express.static(options.pathsWebserver));
-   app.listen(options.port);
+   var server = app.listen(options.port);
    log.success('Webserver created running on localhost: ' + options.port);
 
-   return app;
+   return {
+      app: app,
+      server: server
+   };
 };
