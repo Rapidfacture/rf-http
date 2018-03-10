@@ -4,7 +4,6 @@
   "description": "A express webserver module",
   "author": "Rapidfacture GmbH",
   "license": "UNLICENSED",
-  "private": true,
   "main": "server.js",
   "dependencies": {
     "express": "4.16.2",
