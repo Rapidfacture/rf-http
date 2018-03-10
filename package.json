@@ -1,14 +1,14 @@
 {
-   "name": "rf-http",
-   "version": "0.0.1",
-   "description": "A express webserver module",
-   "author": "Rapidfacture GmbH",
-   "license": "UNLICENSED",
-   "private": true,
-   "main": "server.js",
-   "dependencies": {
-      "express": "4.16.2",
-      "body-parser": "^1.12.2"
-   },
-   "devDependencies": {}
+  "name": "rf-http",
+  "version": "0.0.2",
+  "description": "A express webserver module",
+  "author": "Rapidfacture GmbH",
+  "license": "UNLICENSED",
+  "private": true,
+  "main": "server.js",
+  "dependencies": {
+    "express": "4.16.2",
+    "body-parser": "^1.12.2"
+  },
+  "devDependencies": {}
 }
