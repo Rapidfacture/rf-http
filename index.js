@@ -14,12 +14,12 @@ try { // try using rf-log
 } catch (e) {}
 
 
-var limitSize = '50mb'; // body parser
-
 
 module.exports.start = function (options) {
+   options = options || {};
    options.pathsWebserver = options.pathsWebserver;
    options.port = options.port || 3021;
+   options.bodyParserLimitSize = options.bodyParserLimitSize || '50mb';
 
    if (!options.pathsWebserver) log.critical('options.pathsWebserver is not defined!');
 
@@ -28,15 +28,15 @@ module.exports.start = function (options) {
    var app = express();
 
    app.use(bodyParser.raw({ // support raw buffer bodies
-      limit: limitSize
+      limit: options.bodyParserLimitSize
    }));
    app.use(bodyParser.json({ // support JSON-encoded bodies
       extended: false,
-      limit: limitSize
+      limit: options.bodyParserLimitSize
    }));
    app.use(bodyParser.urlencoded({ // support URL-encoded bodies
       extended: false,
-      limit: limitSize
+      limit: options.bodyParserLimitSize
    }));
 
    // enable cross origin sharing (http://enable-cors.org/server_expressjs.html)
