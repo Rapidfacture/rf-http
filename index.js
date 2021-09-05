@@ -46,6 +46,8 @@ module.exports.start = function (options) {
       res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
       res.header('Access-Control-Allow-Origin', req.headers.origin);
       res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept, X-Access-Token');
+      // force to refresh css files in dev mode
+      if (options.devMode) res.set('Cache-Control', 'no-store');
       next();
    });
 
